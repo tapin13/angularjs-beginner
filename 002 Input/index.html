@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="helloAngularjsApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/angular.min.js"></script>
+    <title>Input</title>
+    <script>
+        const model = "Hello AngularJS";
+
+        const helloAngularjsApp = angular.module("helloAngularjsApp", []);
+
+        helloAngularjsApp.controller("helloAngularjsCtrl", function($scope) {
+            $scope.message = model;
+
+            $scope.clickHandler = function() {
+                $scope.message = $scope.text;
+            }
+        });
+    </script>
+</head>
+<body ng-controller="helloAngularjsCtrl">
+    <h1>{{message}}</h1>
+    <input ng-model="text">
+    <button ng-click="clickHandler()">Refresh</button>
+</body>
+</html>
