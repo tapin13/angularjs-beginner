@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="courseListApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/angular.min.js"></script>
+    <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Course List</title>
+    <script>
+        const model = "Course List App";
+
+        const helloAngularjsApp = angular.module("courseListApp", []);
+
+        helloAngularjsApp.controller("courseListCtrl", function($scope) {
+            $scope.message = model;
+
+            $scope.clickHandler = function() {
+                $scope.message = $scope.text;
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header">
+                    <h1>
+                        Plan
+                    </h1>
+                    <br />
+                    <h3>
+                        User: Vasia Courses: 2
+                    </h3>
+            </div>
+        </div>
+        <br />
+        <div class="panel">
+            <div class="input-group">
+                <input class="form-control" />
+                <span class="input-group-append">
+                    <button class="input-group-text">Add</button>
+                </span>
+            </div>
+        </div>
+        <br />
+        <table class="table table-hover">
+            <thead class="table-borderless">
+                <tr>
+                    <th>Course</th>
+                    <th>Done</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>JS</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
