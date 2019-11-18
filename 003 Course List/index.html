@@ -8,12 +8,18 @@
     <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>Course List</title>
     <script>
-        const model = "Course List App";
+        const model = {
+            user: "Vasia Balkin",
+            courses: [
+                { "name": "HTML", "passed": true },
+                { "name": "JS", "passed": false }
+            ]
+        };
 
         const helloAngularjsApp = angular.module("courseListApp", []);
 
         helloAngularjsApp.controller("courseListCtrl", function($scope) {
-            $scope.message = model;
+            $scope.list = model;
 
             $scope.clickHandler = function() {
                 $scope.message = $scope.text;
@@ -21,7 +27,7 @@
         });
     </script>
 </head>
-<body>
+<body ng-controller="courseListCtrl">
     <div class="container">
         <div class="page-header">
             <div class="page-header">
@@ -30,7 +36,7 @@
                     </h1>
                     <br />
                     <h3>
-                        User: Vasia Courses: 2
+                        User: {{list.user}}, Courses: {{list.courses.length}}
                     </h3>
             </div>
         </div>
@@ -53,11 +59,11 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>HTML</td>
+                    <td></td>
                     <td>Yes</td>
                 </tr>
                 <tr>
-                    <td>JS</td>
+                    <td></td>
                     <td>No</td>
                 </tr>
             </tbody>
