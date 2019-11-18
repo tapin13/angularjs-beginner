@@ -11,19 +11,16 @@
         const model = {
             user: "Vasia Balkin",
             courses: [
-                { "name": "HTML", "passed": true },
-                { "name": "JS", "passed": false }
+                { "name": "HTML", "passed": "Yes" },
+                { "name": "CSS", "passed": "Yes" },
+                { "name": "JS", "passed": "No" }
             ]
         };
 
         const helloAngularjsApp = angular.module("courseListApp", []);
 
         helloAngularjsApp.controller("courseListCtrl", function($scope) {
-            $scope.list = model;
-
-            $scope.clickHandler = function() {
-                $scope.message = $scope.text;
-            }
+            $scope.data = model;
         });
     </script>
 </head>
@@ -36,7 +33,7 @@
                     </h1>
                     <br />
                     <h3>
-                        User: {{list.user}}, Courses: {{list.courses.length}}
+                        User: {{data.user}}, Courses: {{data.courses.length}}
                     </h3>
             </div>
         </div>
@@ -58,13 +55,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>No</td>
+                <tr ng-repeat="course in data.courses">
+                    <td>{{course.name}}</td>
+                    <td>{{course.passed}}</td>
                 </tr>
             </tbody>
         </table>
