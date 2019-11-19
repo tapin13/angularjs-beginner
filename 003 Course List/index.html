@@ -11,9 +11,9 @@
         const model = {
             user: "Vasia Balkin",
             courses: [
-                { "name": "HTML", "passed": "Yes" },
-                { "name": "CSS", "passed": "Yes" },
-                { "name": "JS", "passed": "No" }
+                { "name": "HTML", "passed": true },
+                { "name": "CSS", "passed": true },
+                { "name": "JS", "passed": false }
             ]
         };
 
@@ -25,10 +25,17 @@
             $scope.addCourse = function() {
                 $scope.data.courses.push({
                     name: $scope.courseName,
-                    passed: "No"
+                    passed: false
                 });
 
                 $scope.courseName = "";
+            }
+
+            $scope.showText = function(passed) {
+                return passed ? "Yes" : "No";
+            }
+            $scope.setStyle = function(passed) {
+                return passed ? "color: green" : "color: red";
             }
         });
     </script>
@@ -60,13 +67,19 @@
             <thead class="table-borderless">
                 <tr>
                     <th>Course</th>
+                    <th></th>
                     <th>Done</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="course in data.courses">
                     <td>{{course.name}}</td>
-                    <td>{{course.passed}}</td>
+                    <td><input type="checkbox" ng-model="course.passed" /></td>
+                    <td>
+                        <span style="{{setStyle(course.passed)}}">
+                                {{showText(course.passed)}}
+                        </span>
+                    </td>
                 </tr>
             </tbody>
         </table>
