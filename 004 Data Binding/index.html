@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dataBindingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/angular.min.js"></script>
+    <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title></title>
+    <script>
+        const app = angular.module("dataBindingApp", []);
+
+        app.controller("dataBindingCtrl", function($scope) {
+            $scope.items = [
+                { "name": "Item 1", "value": "Value 1" },
+                { "name": "Item 2", "value": "Value 2" },
+                { "name": "Item 3", "value": "Value 3" },
+            ];
+        })
+    </script>
+</head>
+<body ng-controller="dataBindingCtrl">
+    <div class="container">
+        <div>There is {{ items.length }} items. Double {} used.</div>
+
+        <div>
+            There is <span ng-bind="items.length"></span>  items. ng-bind used.
+        </div>
+
+        <div ng-bind-template="First item: {{items[0].name}} and third item: {{items[2].name}}"></div>
+
+        <div ng-non-bindable> AngularJS use {{}} for templates</div>
+        
+    </div>
+</body>
+</html>
