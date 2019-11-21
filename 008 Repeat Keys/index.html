@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dataBindingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/angular.min.js"></script>
+    <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title></title>
+    <script>
+        const app = angular.module("dataBindingApp", []);
+
+        app.controller("dataBindingCtrl", function($scope) {
+            $scope.items = [
+                { "manufacture": "Honda", "model": "Hybrid", "color": "Red" },
+                { "manufacture": "Mazda", "model": "2", "color": "Black" },
+                { "manufacture": "Honda", "model": "Civic", "color": "Yellow" },
+            ];
+        })
+    </script>
+</head>
+<body ng-controller="dataBindingCtrl">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">List of items</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="(key, value) in items[0]">{{key[0].toUpperCase()}}{{key.slice(1)}}</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="item in items">
+                        <tr>
+                            <td ng-repeat="value in item">{{value}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/>
+        <div class="card">
+            <div class="card-header">List of items Key-Value</div>
+            <div class="card-body">
+                <div ng-repeat="item in items">
+                    <div>
+                        <span ng-repeat="(key, value) in item">{{key}}: {{value}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>
