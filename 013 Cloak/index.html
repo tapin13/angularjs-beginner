@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dataBindingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/angular.min.js"></script>
+    <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title></title>
+    <script>
+        const app = angular.module("dataBindingApp", []);
+
+        app.controller("dataBindingCtrl", function($scope) {
+            $scope.items = [
+                { "manufacture": "Honda", "model": "City", "color": "Red" },
+                { "manufacture": "Mazda", "model": "2 Lux", "color": "Black" },
+                { "manufacture": "Honda", "model": "Civic", "color": "Yellow" },
+                { "manufacture": "Honda", "model": "Accord", "color": "Black" },
+                { "manufacture": "Honda", "model": "Amaze", "color": "Yellow" },
+            ];
+        })
+    </script>
+    <style>
+        .class1 {
+            background-color: aquamarine;
+        }
+        .class2 {
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+<body ng-controller="dataBindingCtrl">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">List of items</div>
+            <div class="card-body">
+                <p ng-repeat-start="item in items">
+                    {{$index+1}}
+                </p>
+                <span ng-cloak>{{item.manufacture}}</span>
+                <span>{{item.model}}</span>
+                <br ng-repeat-end />
+            </div>
+        </div>
+    </div>
+    <script>alert('stop')</script>
+</body>
+</html>
