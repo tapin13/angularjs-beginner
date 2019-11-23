@@ -12,32 +12,34 @@
 
         app.controller("dataBindingCtrl", function($scope) {
             $scope.items = [
-                { "manufacture": "Honda", "model": "Hybrid", "color": "Red" },
-                { "manufacture": "Mazda", "model": "2", "color": "Black" },
+                { "manufacture": "Honda", "model": "City", "color": "Red" },
+                { "manufacture": "Mazda", "model": "2 Lux", "color": "Black" },
                 { "manufacture": "Honda", "model": "Civic", "color": "Yellow" },
+                { "manufacture": "Honda", "model": "Accord", "color": "Black" },
+                { "manufacture": "Honda", "model": "Amaze", "color": "Yellow" },
             ];
         })
     </script>
+    <style>
+        .class1 {
+            background-color: aquamarine;
+        }
+        .class2 {
+            background-color: cornflowerblue;
+        }
+    </style>
 </head>
 <body ng-controller="dataBindingCtrl">
     <div class="container">
         <div class="card">
             <div class="card-header">List of items</div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Manufacture</th>
-                            <th>Model</th>
-                            <th>Color</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in items">
-                            <td ng-repeat="value in item">{{value}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <p ng-repeat-start="item in items">
+                    {{$index+1}}
+                </p>
+                <span>{{item.manufacture}}</span>
+                <span>{{item.model}}</span>
+                <br ng-repeat-end />
             </div>
         </div>
     </div>

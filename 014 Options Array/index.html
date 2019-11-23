@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dataBindingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/angular.min.js"></script>
+    <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title></title>
+    <script>
+        const app = angular.module("dataBindingApp", []);
+
+        app.controller("dataBindingCtrl", function($scope) {
+            $scope.items = [
+                "Honda",
+                "Mazda",
+                "Suzuki",
+            ];
+            $scope.selected = "Mazda";
+        })
+    </script>
+    <style>
+        .class1 {
+            background-color: aquamarine;
+        }
+        .class2 {
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+<body ng-controller="dataBindingCtrl">
+    <div class="container">
+        <select ng-model="selected" ng-options="item for item in items"></select>
+    </div>
+</body>
+</html>

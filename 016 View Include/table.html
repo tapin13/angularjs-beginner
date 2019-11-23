@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>CID</th>
+            <th>Model</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in items">
+            <td>{{$index+1}}</td>
+            <td>{{item.cid}}</td>
+            <td>{{item.model}}</td>
+        </tr>
+    </tbody>
+</table>
