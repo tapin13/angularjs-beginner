@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        let pageApp = angular.module('App', []);
+
+        const pageCtrl = ($scope) => {
+            $scope.fruit = 'Apple';
+
+            $scope.getFruit = (fruit) => {
+                switch(fruit) {
+                    case 'Apple':
+                        return "Yes";
+                        break;
+                    case 'Banana':
+                        return "No";
+                        break;
+                }
+            }
+        }
+
+        pageApp.controller("Ctrl", pageCtrl);
+    </script>
+</head>
+<body ng-controller="Ctrl">
+    <div class="container">
+        <h4>This fruit is {{fruit}}</h4>
+        <h4>Do you want it? {{getFruit(fruit)}}</h4>
+    </div>
+</body>
+</html>

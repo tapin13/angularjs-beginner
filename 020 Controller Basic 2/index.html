@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        let pageApp = angular.module('App', []);
+
+        const pageCtrl = ($scope) => {
+            $scope.cities = [
+                'London',
+                'Moscow',
+                'New York'
+            ];
+
+            $scope.getCountryByCity = (city) => {
+                switch(city) {
+                    case 'London':
+                        return 'UK';
+                    case 'Moscow':
+                        return 'RU';
+                }
+            }
+        }
+
+        pageApp.controller("Ctrl", pageCtrl);
+    </script>
+</head>
+<body ng-controller="Ctrl">
+    <div class="container">
+        Country: {{getCountryByCity(city) || 'Undefined'}}
+        <br/>
+        Select city: <select ng-model="city" ng-options="city for city in cities"></select>
+    </div>
+</body>
+</html>
