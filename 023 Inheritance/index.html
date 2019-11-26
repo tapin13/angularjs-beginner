@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        let pageApp = angular.module('App', []);
+
+        const baseCtrl = function($scope) {
+            $scope.dataValue = "------";
+
+            $scope.changeValue = function() {
+                $scope.dataValue = "Hello Ang " + Date.now();
+            }
+        }
+
+        pageApp.controller("baseCtrl", baseCtrl);
+
+        const derivedCtrl = function($scope) {
+            $scope.changeValue2 = function() {
+                $scope.dataValue = "Hello Ang 2 " + Date.now();
+            }
+        }
+
+        pageApp.controller("derivedCtrl", derivedCtrl);
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="baseCtrl">
+        {{dataValue}}
+
+        <button ng-click="changeValue()">baseCtrl</button>
+
+        <div ng-controller="derivedCtrl">
+                {{dataValue}}
+
+                <button ng-click="changeValue()">derivedCtrl baseCtrl</button>
+
+                <button ng-click="changeValue2()">derivedCtrl</button>
+        </div>
+    </div>
+</body>
+</html>
