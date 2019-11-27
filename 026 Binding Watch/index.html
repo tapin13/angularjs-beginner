@@ -10,12 +10,22 @@
     <script type="text/javascript">
         let pageApp = angular.module('App', []);
 
-        const Ctrl = function($scope, $rootScope) {
+        const Ctrl = function($scope, $interval) {
             $scope.times = 0;
+
+            $scope.$watch("times", function(newValue, oldValue) {
+                console.log(`oldValue: `, oldValue, `newValue:`, newValue);
+            });
 
             $scope.up = function() {
                 $scope.times++;
             }
+
+            // $interval(function() {
+            //     $scope.times++;
+            // }, 1000);
+
+            console.log($scope.$$watchers);
         }
 
         pageApp.controller("Ctrl", Ctrl);
@@ -24,7 +34,8 @@
 </head>
 <body>
     <div class="container" ng-controller="Ctrl">
-        Counter: {{times}}  times
+        <p>Counter: {{times}}  times</p>
+        <p>Counter: {{times}}  times</p>
         <button ng-click="up()">Up</button>
     </div>
 </body>
