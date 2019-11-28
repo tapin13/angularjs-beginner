@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="./lib/angular.min.js"></script>
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="./lib/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+    <script type="text/javascript" src="./lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="./lib/jquery-ui-1.12.1/jquery-ui.min.css">
     <title></title>
     <script type="text/javascript">
         let pageApp = angular.module('App', []);
 
-        const Ctrl = function($scope, $interval) {
+        const Ctrl = function($scope) {
             $scope.times = 0;
 
             $scope.$watch("times", function(newValue, oldValue) {
@@ -20,14 +23,6 @@
             $scope.up = function() {
                 $scope.times++;
             }
-
-            setInterval(function() {
-                $scope.$apply(function() {
-                    $scope.times++;
-                })
-            }, 1000);
-
-            console.log($scope.$$watchers);
         }
 
         pageApp.controller("Ctrl", Ctrl);
@@ -36,8 +31,15 @@
 </head>
 <body>
     <div class="container" ng-controller="Ctrl">
-        <p>Counter: {{times}}  times</p>
-        <button ng-click="up()">Up</button>
+        <div class="panel">
+            <div class="panel-heading">AngularJS</div>
+                <p>Counter: {{times}} times</p>
+                <button ng-click="up()">Up</button>
+        </div>
+        <div class="panel">
+                <p>Counter: {{times}} times</p>
+                <button ng-click="up()">Up</button>
+        </div>
     </div>
 </body>
 </html>
