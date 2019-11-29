@@ -11,16 +11,25 @@
     <link rel="stylesheet" href="./lib/jquery-ui-1.12.1/jquery-ui.min.css">
     <title></title>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $("#jQueryUI button").button().click(function(e) {
+                console.log('jQueryUI button')
+                angular.element(angularRegion).scope().$apply("clickHandler()")
+            });
+        });
         let pageApp = angular.module('App', []);
 
         const Ctrl = function($scope) {
+            $scope.buttonEnable = true;
             $scope.times = 0;
 
-            $scope.$watch("times", function(newValue, oldValue) {
-                console.log(`oldValue: `, oldValue, `newValue:`, newValue);
-            });
+            $scope.$watch("buttonEnable", function(newValue) {
+                $("#jQueryUI button").button({
+                    disabled: !newValue
+                });
+            })
 
-            $scope.up = function() {
+            $scope.clickHandler = function() {
                 $scope.times++;
             }
         }
@@ -30,15 +39,30 @@
     </script>
 </head>
 <body>
-    <div class="container" ng-controller="Ctrl">
-        <div class="panel">
-            <div class="panel-heading">AngularJS</div>
-                <p>Counter: {{times}} times</p>
-                <button ng-click="up()">Up</button>
-        </div>
-        <div class="panel">
-                <p>Counter: {{times}} times</p>
-                <button ng-click="up()">Up</button>
+    <div class="container">
+        <div class="row text-center">
+            <div id="angularRegion" class="col-xl-6" ng-controller="Ctrl">
+                <div class="card">
+                    <div class="card-header">AngularJS</div>
+                    <div class="card-body">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="buttonEnable"/>
+                                Enable Button
+                            </label>
+                        </div>
+                        <p>Counter: {{times}} times</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div id="jQueryUI" class="card">
+                    <div class="card-header">jQueryUI</div>
+                    <div class="card-body">
+                        <button class="btn" ng-click="up()">Up</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
