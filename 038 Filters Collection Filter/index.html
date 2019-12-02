@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const pageApp = angular.module('App', []);
+
+        const Ctrl = function($scope) {
+            $scope.items = [
+                { name: "Item 1", price: 10.9, category: "Category 1", count: 100000, tax: 1.12, expiration: 10 },
+                { name: "Item 2", price: 1.2, category: "Category 1", count: 8, tax: 7.97, expiration: 12 },
+                { name: "Item 3", price: 2.4, category: "Category 2", count: 7, tax: 6.8, expiration: 5 },
+                { name: "Item 4", price: 17.5, category: "Category 2", count: 6, tax: 3.1, expiration: 1 },
+                { name: "Item 5", price: 19.3, category: "Category 2", count: 4, tax: 2.2, expiration: 4 },
+                { name: "Item 6", price: 169.3, category: "Category 2", count: 4, tax: 2.2, expiration: 34 },
+                { name: "Item 7", price: 159.3, category: "Category 2", count: 4, tax: 5.2, expiration: 14 },
+                { name: "Item 8", price: 149.3, category: "Category 1", count: 31, tax: 63.2, expiration: 5 },
+            ];
+
+            $scope.getExpireDate = function(days) {
+                const now = new Date();
+                return now.setDate(now.getDate() + days);
+            };
+        }
+
+        pageApp.controller("Ctrl", Ctrl);
+    </script>
+    <style type="text/css">
+        table thead tr th {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="Ctrl">
+        <div>
+            Total items: <span class="badge badge-primary">{{items.length}}</span>
+        </div>
+        <div>
+            Limit <select ng-model="limitValue" ng-options="item for item in limitRange"></select>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>price</th>
+                    <th>category</th>
+                    <th>count</th>
+                    <th>tax</th>
+                    <th>expiration</th>
+                    <th>date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items | filter: { category: 'Category 1' }">
+                    <td>{{item.name | uppercase}}</td>
+                    <td>{{item.price | currency}}</td>
+                    <td>{{item.category | lowercase}}</td>
+                    <td>{{item.count | number}}</td>
+                    <td>{{item.tax | number: 1}}</td>
+                    <td>{{item.expiration}}</td>
+                    <td>{{getExpireDate(item.expiration) | date: "fullDate"}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
