@@ -22,12 +22,8 @@
                 { name: "Item 8", price: 149.3, category: "Category 1", count: 31, tax: 63.2, expiration: 5 },
             ];
 
-            $scope.limitValue = 5;
-
-            $scope.limitRange = [];
-
-            for(let i = $scope.items.length * -1; i <= $scope.items.length; i++) {
-                $scope.limitRange.push(i);
+            $scope.myCustomOrderFucntion = function(item) {
+                return item.expiration < 10 ? 0 : item.price;
             }
 
             $scope.getExpireDate = function(days) {
@@ -49,9 +45,6 @@
         <div>
             Total items: <span class="badge badge-primary">{{items.length}}</span>
         </div>
-        <div>
-            Limit <select ng-model="limitValue" ng-options="item for item in limitRange"></select>
-        </div>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -65,8 +58,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in items | limitTo: limitValue">
-                    <td>{{item.name | uppercase}}</td>
+                <tr ng-repeat="item in items | orderBy: [ myCustomOrderFucntion, 'price' ] | limitTo: 3">
+                        <td>{{item.name | uppercase}}</td>
                     <td>{{item.price | currency}}</td>
                     <td>{{item.category | lowercase}}</td>
                     <td>{{item.count | number}}</td>
