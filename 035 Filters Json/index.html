@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const pageApp = angular.module('App', []);
+
+        const Ctrl = function($scope) {
+            $scope.items = [
+                { name: "Item 1", price: 10.9, category: "Category 1", count: 100000, tax: 1.12, expiration: 10 },
+                { name: "Item 2", price: 1.2, category: "Category 1", count: 8, tax: 7.97, expiration: 12 },
+                { name: "Item 3", price: 2.4, category: "Category 2", count: 7, tax: 6.8, expiration: 5 },
+                { name: "Item 4", price: 17.5, category: "Category 2", count: 6, tax: 3.1, expiration: 1 },
+                { name: "Item 5", price: 19.3, category: "Category 2", count: 4, tax: 2.2, expiration: 4 }
+            ];
+
+            $scope.getExpireDate = function(days) {
+                const now = new Date();
+                return now.setDate(now.getDate() + days);
+            };
+        }
+
+        pageApp.controller("Ctrl", Ctrl);
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="Ctrl">
+        <div>
+            Total: {{items.length}}
+        </div>
+        <div class="card m-md-2" ng-repeat="item in items">
+            <div class="card-body">
+                {{ item | json }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
