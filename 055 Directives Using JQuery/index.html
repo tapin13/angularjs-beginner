@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script type="text/javascript" src="./lib/jquery-3.4.1.min.js"></script>
+
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const pageApp = angular.module('App', []);
+
+        pageApp.directive("manufactureDirective", function() {
+            return function(scope, element, attributes) {
+                let htmlList = angular.element('<ul>');
+                element.prepend(htmlList);
+                scope.data.map(item => {
+                    let htmlItem = angular.element('<li>')
+                                    .append(
+                                        angular.element('<span>').text(item)
+                                    );
+                    htmlList.append(htmlItem);
+                })
+
+                const button = element.find('button');
+                button.on('click', function(e) {
+                    element.find('li').toggleClass('red');
+                    element.find('ul').animate({ marginLeft: '250px' });
+                });
+            }
+        });
+
+        pageApp.controller("Business", function($scope) {
+            $scope.data = ['Mazda', 'Honda', 'Toyota', 'Ford'];
+        });
+    </script>
+    <style type="text/css">
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="Business">
+        <div manufacture-directive>
+            <button class="btn btn-primary">Change color</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const pageApp = angular.module('App', []);
+
+        pageApp.directive("manufactureDirective", function() {
+            return function(scope, element, attributes) {
+                let htmlList = angular.element('<ul>');
+                element.append(htmlList);
+                scope.data.map(item => {
+                    let htmlItem = angular.element('<li>')
+                                    .append(
+                                        angular.element('<span>').text(item)
+                                    );
+                    htmlList.append(htmlItem);
+                })
+            }
+        });
+
+        pageApp.directive("removeB", function() {
+            return function(scope, element, attributes) {
+                const bElements = element.find('b');
+                for(let i in bElements) {
+                    bElements.eq(i).remove();
+                }
+            }
+        });
+
+        pageApp.controller("Business", function($scope) {
+            $scope.data = ['Mazda', 'Honda', 'Toyota', 'Ford'];
+        });
+    </script>
+    <style type="text/css">
+        .target {
+            color: red;
+        }
+        .missing {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="Business">
+        <h3>Manufacture:</h3>
+        <div manufacture-directive></div>
+        <h3>Colors:</h3>
+        <div remove-b>
+            <b>Red</b> Green <b>Blue</b> Yellow
+        </div>
+        <div>
+            <b>Red</b> Green <b>Blue</b> Yellow
+        </div>
+    </div>
+</body>
+</html>

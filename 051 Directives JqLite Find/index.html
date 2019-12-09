@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const pageApp = angular.module('App', []);
+
+        pageApp.directive("customDirective", function() {
+            return function(scope, element, attributes) {
+                const elements = element.find("li");
+                for(let elementKey in elements) {
+                    if(elements.hasOwnProperty(elementKey)) {
+                        elements.eq(elementKey).text() === "Honda" ? elements.eq(elementKey).css("color", "red") : null;
+                    }
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div custom-directive>
+            <h3>Manufacture:</h3>
+            <ul>
+                <li>Mazda</li>
+                <li>Honda</li>
+                <li>Toyota</li>
+                <li>Ford</li>
+                <li>Hunday</li>
+            </ul>
+            <h3>Factory:</h3>
+            <ol>
+                <li>Toyota</li>
+                <li>Mazda</li>
+                <li>Honda</li>
+            </ul>
+        
+        </div>
+    </div>
+</body>
+</html>
