@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.hideElement1 = false;
+        $scope.hideElement2 = false;
+        $scope.hideElement3 = false;
+    });
+    </script>
+    <style type="text/css">
+    .elements div {
+        border: 1px solid gray;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 3px;
+        background: green;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div>
+            <h3>Hide elements: </h3>
+            Hide Element 1: <input type="checkbox" ng-model="hideElement1" />
+            <br/>
+            Hide Element 2: <input type="checkbox" ng-model="hideElement2" />
+            <br/>
+            Hide Element 3: <input type="checkbox" ng-model="hideElement3" />
+        </div>
+
+        <div class="elements">
+            <div id="info1" ng-hide="hideElement1">Element 1</div>
+            <div id="info2" ng-hide="hideElement2">Element 2</div>
+            <div id="info3" ng-hide="hideElement3">Element 3</div>
+        </div>
+    </div>
+</body>
+</html>
