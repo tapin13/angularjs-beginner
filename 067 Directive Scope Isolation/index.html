@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/ng-template" id="myTemplate">
+            <div class="card-header">{{data.caption}}</div>
+            <div class="card-body">
+                <div class="card-text"><input type="text" ng-model="data.caption" /></div>
+            </div>
+    </script>
+
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.directive("scopeExample", function() {
+        return {
+            template: angular.element(document.querySelector("#myTemplate")).html(),
+            scope: { }
+        }
+    });
+
+    app.controller("myCtrl", function($scope) {
+        $scope.data = { caption: "Caption" }
+    });
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div class="card" scope-example></div>
+        <hr/>
+        <div class="card" scope-example></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.directive("scopeExample", function() {
+        return {
+            template: "<div class='card-body'>Type here: <input ng-model='data'/> <div>{{data}}</div></div>"
+        }
+    });
+
+    app.controller("myCtrl_1", function($scope) {
+
+    });
+    app.controller("myCtrl_2", function($scope) {
+
+    });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div ng-controller="myCtrl_1" class="card-body" scope-example></div>
+        </div>
+        <hr/>
+        <div class="card">
+            <div ng-controller="myCtrl_2" class="card-body" scope-example></div>
+        </div>
+    </div>
+</body>
+</html>
