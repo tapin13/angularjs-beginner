@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.styleObject = {
+            border: false,
+            size: false,
+            color: false
+        };
+    });
+    </script>
+    <style type="text/css">
+    .border {
+        border: 1px solid gray;
+        border-radius: 3px;
+    }
+
+    .size {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .color {
+        background-color: lightblue;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div>
+            border: <input type="checkbox" ng-model="styleObject.border" />
+            size: <input type="checkbox" ng-model="styleObject.size" />
+            color: <input type="checkbox" ng-model="styleObject.color" />
+        </div>
+
+        <div ng-class="styleObject">Title</div>
+    </div>
+</body>
+</html>

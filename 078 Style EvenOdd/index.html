@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.items = [ 'item 1', 'item 2', 'item 3', 'item 4' ];
+        $scope.red = "red";
+        $scope.green = "green";
+    });
+    </script>
+    <style type="text/css">
+    .red {
+        color: red;
+    }
+    .green {
+        color: green;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <ul>
+            <li ng-repeat="item in items" ng-class-even="red" ng-class-odd="green">{{item}}</li>
+        </ul>
+    </div>
+</body>
+</html>
