@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.removeElement1 = true;
+        $scope.removeElement2 = true;
+        $scope.removeElement3 = true;
+    });
+    </script>
+    <style type="text/css">
+    .elements div {
+        display: inline-block;
+        border: 1px solid gray;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 3px;
+        background: indigo;
+        color: white;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div>
+            <h3>Remove elements: </h3>
+            Remove Element 1: <input type="checkbox" ng-model="removeElement1" />
+            <br/>
+            Remove Element 2: <input type="checkbox" ng-model="removeElement2" />
+            <br/>
+            Remove Element 3: <input type="checkbox" ng-model="removeElement3" />
+        </div>
+
+        <div class="elements">
+            <div id="info1" ng-if="!removeElement1">Element 1</div>
+            <div id="info2" ng-if="!removeElement2">Element 2</div>
+            <div id="info3" ng-if="!removeElement3">Element 3</div>
+        </div>
+    </div>
+</body>
+</html>

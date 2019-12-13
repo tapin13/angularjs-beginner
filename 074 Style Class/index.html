@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.styles = [
+            { title: "Light Blue", value: "lightBlue"},
+            { title: "Light Yellow", value: "lightYellow"},
+            { title: "Light Pink", value: "lightPink"}
+        ];
+
+        $scope.selectedClass = 'lightBlue';
+    });
+    </script>
+    <style type="text/css">
+    .elements {
+        display: inline-block;
+        border: 1px solid gray;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 3px;
+    }
+
+    .lightBlue {
+        background-color: lightblue;
+    }
+    .lightYellow {
+        background-color: lightyellow;
+    }
+    .lightPink {
+        background-color: lightpink;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div ng-repeat="style in styles">
+            <label for="{{style.value}}">
+                <input type="radio" name="color" id="{{style.value}}" ng-model="$parent.selectedClass" value="{{style.value}}" /> {{style.title}}
+            </label>
+        </div>
+
+        <div class="elements" ng-class="selectedClass"></div>
+    </div>
+</body>
+</html>
