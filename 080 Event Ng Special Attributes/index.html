@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.dataValue = false;
+    });
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        Status: <input type="checkbox" ng-model="dataValue"/>
+        <div>
+            <button class="btn btn-primary" ng-disabled="dataValue">Order</button>
+        </div>
+        <div>
+            <input type="text" ng-readonly="dataValue" value="Check my order" />
+        </div>
+        <div>
+            <input type="checkbox" ng-checked="dataValue" />
+        </div>
+        <div>
+            <input type="radio" ng-checked="dataValue" />
+        </div>
+        <div>
+            <select>
+                <option>Enable</option>
+                <option ng-selected="dataValue">Disable</option>
+            </select>
+        </div>
+    </div>
+</body>
+</html>

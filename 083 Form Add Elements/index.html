@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.newTask = { title: undefined, level: undefined, complete: false };
+
+        $scope.tasks = [
+            { title: "task 1", level: "Medium", complete: false },
+            { title: "task 2", level: "Medium", complete: true },
+            { title: "task 3", level: "Medium", complete: false },
+            { title: "task 4", level: "Medium", complete: true },
+        ];
+
+        $scope.addTask = function(task) {
+            if(angular.isDefined(task) && angular.isDefined(task.title) && angular.isDefined(task.level)) {
+                $scope.tasks.push(Object.assign({}, task));
+
+                $scope.newTask = { title: undefined, level: undefined, complete: false };
+            }
+        }
+    });
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div class="row">
+            <div class="row col-md-4">
+                <div class="form card card-body">
+                    <div class="form-group">
+                        <label for="title">Task</label>
+                        <input type="text" name="title" ng-model="newTask.title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Level</label>
+                        <select name="level" ng-model="newTask.level">
+                            <option>Hi</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" ng-click="addTask(newTask)">Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                            Uncompleted tasks: {{ (tasks | filter: { complete: false }).length }}
+                        </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Level</th>
+                                        <th>Complete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="task in tasks">
+                                        <td>{{task.title}}</td>
+                                        <td>{{task.level}}</td>
+                                        <td><input type="checkbox" ng-model="task.complete" /> {{task.complete}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

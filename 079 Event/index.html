@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+    const app = angular.module("App", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.type = '';
+        $scope.color = { backgroundColor: "" };
+
+        $scope.handleEvent = function(event) {
+            console.log(event);
+            $scope.type = event.type;
+        }
+
+        $scope.handleClick =  function(color) {
+            alert(color);
+            $scope.color.backgroundColor =  color;
+        }
+    });
+    </script>
+    <style type="text/css">
+    .element {
+        background-color: lightgreen;
+        padding: 20px;
+        margin: 20px;
+        display: inline-block;
+    }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div class="element" ng-style="color" ng-mouseenter="handleEvent($event)" ng-mouseleave="handleEvent($event)">{{type}}</div>
+
+        <ul>
+            <li ng-repeat="item in [ 'red', 'green', 'yellow' ]" ng-click="handleClick(item)">{{item}}</li>
+        </ul>
+    </div>
+</body>
+</html>
