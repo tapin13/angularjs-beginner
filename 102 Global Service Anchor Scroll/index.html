@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const app = angular.module("App", []);
+
+        app.config(function($anchorScrollProvider) {
+            $anchorScrollProvider.disableAutoScrolling();
+        })
+
+        app.controller("myCtrl", function($scope, $location, $anchorScroll, $timeout) {
+            $scope.items = [];
+            for(let i = 0; i < 50; i++) {
+                $scope.items.push(i);
+            }
+
+            $scope.goto = function(location) {
+                $location.hash(location);
+
+                $timeout(function() {
+                    $anchorScroll();
+                }, 1000);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div id="top">
+            <button ng-click="goto('bottom')">Bottom</button>
+        </div>
+        <ul>
+            <li ng-repeat="item in items">Item #{{item}}</li>
+        </ul>
+        <div id="bottom">
+                <button ng-click="goto('top')">Top</button>
+            </div>
+        </div>
+</body>
+</html>
