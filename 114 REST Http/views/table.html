@@ -1,0 +1,23 @@
+<div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items">
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button ng-click="delete(item)">Delete</button>
+                    <button ng-click="edit(item)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button ng-click="refresh()">Refrash</button>
+    <button ng-click="edit()">New</button>
+</div>

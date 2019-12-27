@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const app = angular.module("App", []);
+
+        app.controller("myCtrl", function($scope) {
+            $scope.list = [ "Len", "Jone", "Bor" ];
+        }).directive("myList", function($compile) {
+            return function(scope, element, attributes) {
+                const expression = "<ul><li ng-repeat='item in list'>{{item}}</li></ul>";
+                const ul = angular.element(expression);
+
+                const list = $compile(ul);
+
+                list(scope);                
+
+                element.append(ul);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div my-list></div>
+</body>
+</html>

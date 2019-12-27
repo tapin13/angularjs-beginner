@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <title></title>
+    <script type="text/javascript">
+        const app = angular.module("App", []);
+
+        app.controller("myCtrl", function($scope, $http) {
+            $scope.items = [];
+            $scope.errorMessage;
+
+            $scope.sendRequest = function() {
+                $http({
+                    method: 'GET',
+                    url: 'http://angularjs.local/BackEnd/api.php'
+                }).then(function successCallback(response) {
+                    console.log(response);
+                    $scope.items = response.data;
+                }, function errorCallback(err) {
+                    console.log(err);
+                    $scope.errorMessage = err.statusText;
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <button ng-click="sendRequest()">Get Data</button>
+        <div ng-if="errorMessage">Error message: {{errorMessage}}</div>
+        <ul>
+            <li ng-repeat="item in items">{{item.name}}</li>
+        </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items">
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+</html>
