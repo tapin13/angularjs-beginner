@@ -51,9 +51,9 @@ class Items {
         }    
     }
 
-    public function delete($deleteItem) {
+    public function delete($id) {
         $stmt = $this->db->prepare("DELETE FROM `$this->table` WHERE `id` = ? LIMIT 1");
-        $stmt->bind_param("i", $deleteItem->id);
+        $stmt->bind_param("i", $id);
         if($stmt->execute()) {
             $item = (object) [];
             
